@@ -27,19 +27,7 @@ document.querySelector('#num-8').addEventListener('click', onClickNumber);
 document.querySelector('#num-9').addEventListener('click', onClickNumber);
 
 const onClickOperator = (op) => () => {
-  if (numOne) {
-    operator = op;
-    $operator.value = op;
-  } else {
-    alert('숫자를 먼저 입력하세요.');
-  }
-}
-document.querySelector('#plus').addEventListener('click', onClickOperator('+'));
-document.querySelector('#minus').addEventListener('click', onClickOperator('-'));
-document.querySelector('#divide').addEventListener('click', onClickOperator('/'));
-document.querySelector('#multiply').addEventListener('click', onClickOperator('*'));
-document.querySelector('#calculate').addEventListener('click', () => {
-  if (numTwo) {
+  if (numTwo) { 
     switch (operator) {
       case '+':
         $result.value = parseInt(numOne) + parseInt(numTwo);
@@ -55,7 +43,56 @@ document.querySelector('#calculate').addEventListener('click', () => {
         break;
       default:
         break;
+    }
+    numOne = $result.value;
+    numTwo = '' 
+  }
+  if (numOne) {
+    operator = op;
+    $operator.value = op;
+  } else {
+    alert('숫자를 먼저 입력하세요.');
+  }
+}
+document.querySelector('#percent').addEventListener('click', () => {
+  if (numOne || $result.value) {
+    $operator.value = '%';
+    $result.value = numOne / 100;
+    operator = '';
+    numTwo = '';
+    numOne = $result.value;
+    return;
+  } else {
+    alert('숫자를 먼저 입력하세요.');
+   
+  }
+});
+document.querySelector('#plus').addEventListener('click', onClickOperator('+'));
+document.querySelector('#minus').addEventListener('click', onClickOperator('-'));
+document.querySelector('#divide').addEventListener('click', onClickOperator('/'));
+document.querySelector('#multiply').addEventListener('click', onClickOperator('*'));
+document.querySelector('#calculate').addEventListener('click', () => {
+  if (numTwo) {
+    switch (operator) {
+      case '+':
+        $result.value = Number(numOne) + Number(numTwo);
+        break;
+      case '-':
+        $result.value = numOne - numTwo;
+        break;
+      case '*':
+        $result.value = numOne * numTwo;
+        break;
+      case '/':
+        $result.value = numOne / numTwo;
+        break;
+      default:
+        break;
     } 
+      $operator.value = '';
+      numOne = $result.value;
+      operator = '';
+      numTwo = '';
   } else {
       alert('숫자를 먼저 입력하세요.');
     }
