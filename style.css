@@ -32,7 +32,7 @@
   --weight-regular: 400;
 
   /* Size */
-  --size-border-radius: 4px;
+  --size-border-radius: 8px;
 
   /* Animation */
   --animation-duration: 350ms;
@@ -40,6 +40,12 @@
 
 * {
   box-sizing: border-box;
+  border-radius: var(--size-border-radius);
+}
+
+.box {
+  border: 5px solid darkgray;
+  display: inline-block;
   border-radius: var(--size-border-radius);
 }
 
